@@ -27,6 +27,7 @@ tools/
 ├── 08-web/                 # Explotación de aplicaciones web
 ├── 09-wireless/            # Auditoría de redes WiFi
 ├── 10-misc/                # Sin clasificar
+├── 11-social-engineering/  # Phishing, ingeniería social (SET, gophish...)
 ├── scripts/                # Utilidades del propio repo (no se indexan)
 └── templates/              # Plantillas de cabecera para nuevos scripts
 ```
@@ -54,6 +55,7 @@ La siguiente tabla se regenera automáticamente. Nunca la edites a mano:
 | [privesc-check-linux](05-privesc/linux/privesc-check.sh) | Enumeración rápida de vectores de escalada de privilegios en Linux: SUID/SGID, sudo, capabilities, cron, PATH escribible y credenciales. |
 | [privesc-check-windows](05-privesc/windows/privesc-check.ps1) | Enumeración de vectores de escalada de privilegios en Windows: tokens, parches, servicios con ruta no entrecomillada/reescribible y autoruns. |
 | [hydra-cheatsheet](07-password-attacks/linux/hydra-cheatsheet.sh) | Lista de ataques de fuerza bruta con hydra sobre SSH, RDP, SMB, FTP y HTTP, más notas de hashcat para modo offline. |
+| [set-cheatsheet](11-social-engineering/linux/set-cheatsheet.md) | Guía rápida del Social Engineering Toolkit (SET): instalación, phishing con clonado de sitios, captura de credenciales y correo masivo. |
 <!-- FIN-INDICE -->
 
 ---
@@ -83,7 +85,7 @@ La siguiente tabla se regenera automáticamente. Nunca la edites a mano:
 - ¿Quiero mantener el acceso? → `06-persistence`
 - ¿Ataque a credenciales? → `07-password-attacks`
 - ¿Web? → `08-web` · ¿WiFi? → `09-wireless`
-- ¿No encaja en nada? → `10-misc` (y muévelo cuando madure)
+- ¿Phishing o ingeniería social? → `11-social-engineering` · ¿No encaja en nada? → `10-misc` (y muévelo cuando madure)
 
 ---
 
@@ -93,5 +95,6 @@ La siguiente tabla se regenera automáticamente. Nunca la edites a mano:
 - Todo script empieza con la cabecera `# Nombre / # Descripción / # Tags / # Uso`.
 - Vuelve a ejecutar `scripts/update-index.ps1` **después de añadir, renombrar o borrar** cualquier herramienta.
 - No subir wordlists o binarios gigantes a git; enlazar la fuente en `00-assets`.
+
 
 
