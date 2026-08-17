@@ -42,7 +42,18 @@ La siguiente tabla se regenera automáticamente. Nunca la edites a mano:
 <!-- INICIO-INDICE -->
 | Herramienta | Descripción |
 | --- | --- |
+| [hping3-ping-sweep](01-recon/linux/hping3-ping-sweep.sh) | Barrido de hosts con hping3: detección de hosts vivos por ICMP/SYN/ACK y de filtrado por firewall. |
+| [whois-enum](01-recon/linux/whois-enum.sh) | Reunión de información pasiva de un dominio: whois, registros DNS y resolución de hosts comunes. |
+| [nmap-nse](02-enumeration/linux/nmap-nse.sh) | Escaneos con scripts NSE de nmap por categoría: seguridad/default, vulnerabilidades, descubrimiento y scripts sueltos. |
+| [nmap-scan](02-enumeration/linux/nmap-scan.sh) | Cheatsheet de nmap: descubrimiento de hosts, escaneo de puertos, versiones, OS, timing y salida a archivos. |
 | [netview](02-enumeration/windows/netview.ps1) | Muestra los puertos TCP en estado LISTENING con su PID, proceso y servicio asociado. |
+| [metasploit-cheatsheet](03-exploitation/linux/metasploit-cheatsheet.md) | Comandos esenciales de msfconsole y msfvenom: búsqueda, exploits, sesiones y auxiliares del día a día. |
+| [msfvenom-reverse-shells](03-exploitation/linux/msfvenom-reverse-shells.sh) | Generación de payloads de reverse shell con msfvenom para Windows, Linux y web, con el listener de msfconsole. |
+| [post-exploitation-linux](04-post-exploitation/linux/post-exploitation.sh) | Comandos útiles tras comprometer un host Linux: identidad, sistema, usuarios, red, procesos, cron, SUID y credenciales típicas. |
+| [post-exploitation-windows](04-post-exploitation/windows/post-exploitation.ps1) | Comandos útiles tras comprometer un host Windows: identidad, sistema, usuarios, red, credenciales almacenadas y tareas. |
+| [privesc-check-linux](05-privesc/linux/privesc-check.sh) | Enumeración rápida de vectores de escalada de privilegios en Linux: SUID/SGID, sudo, capabilities, cron, PATH escribible y credenciales. |
+| [privesc-check-windows](05-privesc/windows/privesc-check.ps1) | Enumeración de vectores de escalada de privilegios en Windows: tokens, parches, servicios con ruta no entrecomillada/reescribible y autoruns. |
+| [hydra-cheatsheet](07-password-attacks/linux/hydra-cheatsheet.sh) | Lista de ataques de fuerza bruta con hydra sobre SSH, RDP, SMB, FTP y HTTP, más notas de hashcat para modo offline. |
 <!-- FIN-INDICE -->
 
 ---
@@ -82,4 +93,5 @@ La siguiente tabla se regenera automáticamente. Nunca la edites a mano:
 - Todo script empieza con la cabecera `# Nombre / # Descripción / # Tags / # Uso`.
 - Vuelve a ejecutar `scripts/update-index.ps1` **después de añadir, renombrar o borrar** cualquier herramienta.
 - No subir wordlists o binarios gigantes a git; enlazar la fuente en `00-assets`.
+
 
