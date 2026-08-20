@@ -1,4 +1,4 @@
-﻿# Pentesting Tools
+# Pentesting Tools
 
 Repositorio personal de herramientas y utilidades para **pentesting ético**. Todo está organizado por fase de ataque y plataforma, con un índice **auto-generado** para encontrar cualquier script en segundos.
 
@@ -43,6 +43,8 @@ La siguiente tabla se regenera automáticamente. Nunca la edites a mano:
 <!-- INICIO-INDICE -->
 | Herramienta | Descripción |
 | --- | --- |
+| [cheatsheet-red-linux](00-assets/cheatsheet-red-linux.md) | Cheatsheet de red para Linux orientada a ciberseguridad: recon, enumeración de servicios, sniffing, MITM, firewalls, tunneling y pivoting. |
+| [cheatsheet-red-windows](00-assets/cheatsheet-red-windows.md) | Cheatsheet de red para Windows (cmd + PowerShell) orientada a ciberseguridad: recon, enumeración, firewall, pivoting y post-explotación. |
 | [hping3-ping-sweep](01-recon/linux/hping3-ping-sweep.sh) | Barrido de hosts con hping3: detección de hosts vivos por ICMP/SYN/ACK y de filtrado por firewall. |
 | [whois-enum](01-recon/linux/whois-enum.sh) | Reunión de información pasiva de un dominio: whois, registros DNS y resolución de hosts comunes. |
 | [nmap-nse](02-enumeration/linux/nmap-nse.sh) | Escaneos con scripts NSE de nmap por categoría: seguridad/default, vulnerabilidades, descubrimiento y scripts sueltos. |
@@ -95,6 +97,7 @@ La siguiente tabla se regenera automáticamente. Nunca la edites a mano:
 - Todo script empieza con la cabecera `# Nombre / # Descripción / # Tags / # Uso`.
 - Vuelve a ejecutar `scripts/update-index.ps1` **después de añadir, renombrar o borrar** cualquier herramienta.
 - No subir wordlists o binarios gigantes a git; enlazar la fuente en `00-assets`.
+
 
 
 
