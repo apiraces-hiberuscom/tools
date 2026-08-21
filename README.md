@@ -1,4 +1,4 @@
-# Pentesting Tools
+﻿# Pentesting Tools
 
 Repositorio personal de herramientas y utilidades para **pentesting ético**. Todo está organizado por fase de ataque y plataforma, con un índice **auto-generado** para encontrar cualquier script en segundos.
 
@@ -36,6 +36,35 @@ Leer el `README.md` de cada fase te dice exactamente qué va dentro de cada carp
 
 ---
 
+## Mapa de navegación por fase
+
+| # | Fase | Qué buscar | Herramientas clave |
+|---|------|------------|-------------------|
+| 01 | [Recon](01-recon/) | Dominios, IPs, OSINT, descubrimiento | `whois`, `dig`, `nmap -sn`, `amass` |
+| 02 | [Enumeración](02-enumeration/) | Servicios, versiones, usuarios, shares | `nmap -sV`, `enum4linux`, `smbclient`, `gobuster` |
+| 03 | [Explotación](03-exploitation/) | CVEs, exploits, payloads, acceso inicial | `msfconsole`, `msfvenom`, `searchsploit` |
+| 04 | [Post-Explotación](04-post-exploitation/) | Credenciales, red, dominio, movimiento lateral | `linpeas`, `winpeas`, `mimikatz`, `BloodHound` |
+| 05 | [Escalada](05-privesc/) | SUID, sudo, tokens, kernel vulnerable | `GTFOBins`, `linux-exploit-suggester` |
+| 06 | [Persistencia](06-persistence/) | Cron, servicios, RunKey, WMI, tareas | `crontab`, `schtasks`, `sc create` |
+| 07 | [Password Attacks](07-password-attacks/) | Fuerza bruta, cracking de hashes | `hydra`, `hashcat`, `john` |
+| 08 | [Web](08-web/) | SQLi, XSS, LFI, SSRF, fingerprinting | `sqlmap`, `nikto`, `gobuster`, `ffuf`, `nuclei` |
+| 09 | [Wireless](09-wireless/) | WPA/WPA2, handshake, Evil Twin, WPS | `aircrack-ng`, `airodump-ng`, `reaver` |
+| 10 | [Misc](10-misc/) | Sin clasificar | -- |
+| 11 | [Social Engineering](11-social-engineering/) | Phishing, ingeniería social | `setoolkit`, `gophish` |
+
+### Flujo de auditoría típico
+```
+01-recon → 02-enumeration → 03-exploitation → 04-post-exploitation
+                                  ↓
+                            05-privesc (si necesario)
+                                  ↓
+                            06-persistence (mantener acceso)
+                                  ↓
+                            07-password-attacks (cracking)
+```
+
+---
+
 ## Índice de herramientas
 
 La siguiente tabla se regenera automáticamente. Nunca la edites a mano:
@@ -43,14 +72,16 @@ La siguiente tabla se regenera automáticamente. Nunca la edites a mano:
 <!-- INICIO-INDICE -->
 | Herramienta | Descripción |
 | --- | --- |
-| [cheatsheet-recon-builtin-linux](00-assets/cheatsheet-recon-builtin-linux.md) | Recon de red en un Linux recién comprometido usando SOLO comandos nativos (sin nmap, nc, tcpdump...): máxima info con lo que ya viene instalado. |
-| [cheatsheet-recon-builtin-windows](00-assets/cheatsheet-recon-builtin-windows.md) | Recon de red en un Windows recién comprometido usando SOLO comandos nativos (cmd + PowerShell, sin netcat ni nmap): máxima info con lo que ya viene instalado. |
-| [cheatsheet-red-linux](00-assets/cheatsheet-red-linux.md) | Cheatsheet de red para Linux orientada a ciberseguridad: recon, enumeración de servicios, sniffing, MITM, firewalls, tunneling y pivoting. |
-| [cheatsheet-red-windows](00-assets/cheatsheet-red-windows.md) | Cheatsheet de red para Windows (cmd + PowerShell) orientada a ciberseguridad: recon, enumeración, firewall, pivoting y post-explotación. |
+| [cheatsheet-recon-builtin-linux](01-recon/linux/cheatsheet-recon-builtin-linux.md) | Recon de red en un Linux recién comprometido usando SOLO comandos nativos (sin nmap, nc, tcpdump...): máxima info con lo que ya viene instalado. |
 | [hping3-ping-sweep](01-recon/linux/hping3-ping-sweep.sh) | Barrido de hosts con hping3: detección de hosts vivos por ICMP/SYN/ACK y de filtrado por firewall. |
 | [whois-enum](01-recon/linux/whois-enum.sh) | Reunión de información pasiva de un dominio: whois, registros DNS y resolución de hosts comunes. |
+| [cheatsheet-recon-builtin-windows](01-recon/windows/cheatsheet-recon-builtin-windows.md) | Recon de red en un Windows recién comprometido usando SOLO comandos nativos (cmd + PowerShell, sin netcat ni nmap): máxima info con lo que ya viene instalado. |
+| [banner-grab](02-enumeration/linux/banner-grab.sh) | Captura de banners con netcat y telnet: peticiones tipicas para identificar servicios y versiones en puertos abiertos. |
+| [cheatsheet-red-linux](02-enumeration/linux/cheatsheet-red-linux.md) | Cheatsheet de red para Linux orientada a ciberseguridad: recon, enumeración de servicios, sniffing, MITM, firewalls, tunneling y pivoting. |
+| [nmap-http-enum](02-enumeration/linux/nmap-http-enum.sh) | Enumeración web con nmap: http-enum, hostmap-bfk (subdominios), http-waf-detect (WAF) y http-trace. |
 | [nmap-nse](02-enumeration/linux/nmap-nse.sh) | Escaneos con scripts NSE de nmap por categoría: seguridad/default, vulnerabilidades, descubrimiento y scripts sueltos. |
 | [nmap-scan](02-enumeration/linux/nmap-scan.sh) | Cheatsheet de nmap: descubrimiento de hosts, escaneo de puertos, versiones, OS, timing y salida a archivos. |
+| [cheatsheet-red-windows](02-enumeration/windows/cheatsheet-red-windows.md) | Cheatsheet de red para Windows (cmd + PowerShell) orientada a ciberseguridad: recon, enumeración, firewall, pivoting y post-explotación. |
 | [netview](02-enumeration/windows/netview.ps1) | Muestra los puertos TCP en estado LISTENING con su PID, proceso y servicio asociado. |
 | [metasploit-cheatsheet](03-exploitation/linux/metasploit-cheatsheet.md) | Comandos esenciales de msfconsole y msfvenom: búsqueda, exploits, sesiones y auxiliares del día a día. |
 | [msfvenom-reverse-shells](03-exploitation/linux/msfvenom-reverse-shells.sh) | Generación de payloads de reverse shell con msfvenom para Windows, Linux y web, con el listener de msfconsole. |
@@ -58,7 +89,10 @@ La siguiente tabla se regenera automáticamente. Nunca la edites a mano:
 | [post-exploitation-windows](04-post-exploitation/windows/post-exploitation.ps1) | Comandos útiles tras comprometer un host Windows: identidad, sistema, usuarios, red, credenciales almacenadas y tareas. |
 | [privesc-check-linux](05-privesc/linux/privesc-check.sh) | Enumeración rápida de vectores de escalada de privilegios en Linux: SUID/SGID, sudo, capabilities, cron, PATH escribible y credenciales. |
 | [privesc-check-windows](05-privesc/windows/privesc-check.ps1) | Enumeración de vectores de escalada de privilegios en Windows: tokens, parches, servicios con ruta no entrecomillada/reescribible y autoruns. |
+| [cheatsheet-persistence](06-persistence/cheatsheet-persistence.md) | Métodos de persistencia en Linux y Windows: cron, systemd, servicios, RunKey, WMI, tareas y más. |
 | [hydra-cheatsheet](07-password-attacks/linux/hydra-cheatsheet.sh) | Lista de ataques de fuerza bruta con hydra sobre SSH, RDP, SMB, FTP y HTTP, más notas de hashcat para modo offline. |
+| [cheatsheet-web](08-web/cheatsheet-web.md) | Pentesting de aplicaciones web: SQLi, XSS, LFI/RFI, SSRF, directorios, headers y fingerprinting. |
+| [cheatsheet-wireless](09-wireless/cheatsheet-wireless.md) | Auditoría de redes WiFi: WPA/WPA2, captura de handshake, deauth, Evil Twin y cracking. |
 | [set-cheatsheet](11-social-engineering/linux/set-cheatsheet.md) | Guía rápida del Social Engineering Toolkit (SET): instalación, phishing con clonado de sitios, captura de credenciales y correo masivo. |
 <!-- FIN-INDICE -->
 
@@ -99,6 +133,10 @@ La siguiente tabla se regenera automáticamente. Nunca la edites a mano:
 - Todo script empieza con la cabecera `# Nombre / # Descripción / # Tags / # Uso`.
 - Vuelve a ejecutar `scripts/update-index.ps1` **después de añadir, renombrar o borrar** cualquier herramienta.
 - No subir wordlists o binarios gigantes a git; enlazar la fuente en `00-assets`.
+
+
+
+
 
 
 

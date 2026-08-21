@@ -1,11 +1,41 @@
 # 05-privesc
 
-Elevación de privilegios: de usuario limitado a administrador/root en los hosts comprometidos.
+Elevación de privilegios de usuario limitado a root/administrator.
 
-## Qué va aquí
-- Scripts de enumeración automática de vectores de escalada (Windows: `winpeas`, checks manuales; Linux: permisos sudo, SUID, capabilities, cron...)
-- Exploits de escalada de privilegios
-- Verificación post-escalada
+## Qué buscar
+- SUID/SGID en binarios manipulables
+- Sudo sin contraseña o con comandos peligrosos
+- Servicios con rutas no entrecomilladas (Windows)
+- Cron jobs ejecutables por el usuario actual
+- Binarios en PATH escribible
+- Kernel vulnerable
 
-## Subcarpetas por plataforma
-- `windows/`, `linux/`
+## Herramientas
+
+| Script | Plataforma | Qué hace |
+|--------|------------|----------|
+| [privesc-check-linux](linux/privesc-check.sh) | Linux | Enumeración de vectores: SUID, sudo, capabilities, cron, PATH |
+| [privesc-check-windows](windows/privesc-check.ps1) | Windows | Tokens, parches, servicios no entrecomillados, autoruns |
+
+## Comandos rápidos
+
+```bash
+# Linux
+sudo -l  # qué puedo hacer como root
+find / -perm -4000 -type f 2>/dev/null  # SUID
+cat /etc/crontab  # cron
+getcap -r / 2>/dev/null  # capabilities
+ls -la /etc/passwd  #世界 writable?
+
+# Windows
+whoami /all  # tokens y privilegios
+systeminfo | findstr /i "Hotfix"  # parches
+sc qc <servicio>  # servicio sospechoso
+reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+```
+
+## Tips
+- LinPEAS / WinPEAS para enumeración automática completa
+- Buscar `GTFOBins` para explotar SUID/sudo/capabilities
+- `linux-exploit-suggester.sh` para vulnerabilidades de kernel
+- Servicios Windows con ruta no entrecomillada =escalada fácil
